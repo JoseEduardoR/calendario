@@ -11,16 +11,16 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-        <form method="POST" action="generarCalendario.php">
+        <form method="POST" action="generarCalendario.php" onsubmit="validarFecha();">
             
             <div>
             <label for="inicio">Inicio</label>
-            <input type="text" pattern="(0?[1-9]|1[0-2])-(\d{4})" name="inicio" placeholder="MM-YYYY" id="inicio">
+            <input required type="text" pattern="(0?[1-9]|1[0-2])-(\d{4})" name="inicio" placeholder="MM-YYYY" id="inicio">
             </div>
             
             <div>
             <label for="fin">Fin</label>
-            <input type="text" pattern="(0?[1-9]|1[0-2])-(\d{4})" name="fin" placeholder="MM-YYYY" onblur="validarFecha();" id="fin">
+            <input required type="text" pattern="(0?[1-9]|1[0-2])-(\d{4})" name="fin" placeholder="MM-YYYY" onblur="validarFecha();" id="fin">
             </div>
             <div>
             <select name="columnas">
@@ -58,7 +58,12 @@ and open the template in the editor.
          
          if(dateFin < dateInicio){
              
-             console.log("la fecha fin no puede ser menor que la fecha inicio");
+             alert("la fecha fin no puede ser menor que la fecha inicio");
+
+             return false;
+
+             inicio.value = '';
+             fin.value = '';
              
          }
          
