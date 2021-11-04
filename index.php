@@ -47,9 +47,33 @@ and open the template in the editor.
      function validarFecha(){
          
          let inicio = document.getElementById('inicio');
-         console.log(inicio);
          let fin = document.getElementById('fin');
-         console.log(fin);
+         
+         let fechaInicio = inicio.value.split('-');
+         let fechaFin = fin.value.split('-');
+         
+         
+         let dateInicio = new Date(fechaInicio[1], fechaInicio[0], 0);
+         let dateFin = new Date(fechaFin[1], fechaFin[0], 0);
+         
+         if(dateFin < dateInicio){
+             
+             console.log("la fecha fin no puede ser menor que la fecha inicio");
+             
+         }
+         
+         else{
+             console.log("procedemos a generar el calendario indicado");
+         }
+         
+         /*console.log("fecha inicio: ");
+         console.log(dateInicio);
+         
+         console.log("fecha fin: ");
+         console.log(dateFin);*/
+         
+         
+         
      }
      
     </script>
