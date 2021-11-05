@@ -6,10 +6,13 @@
  * and open the template in the editor.
  */
 
-echo "generare el calendario";
+require_once 'Mes.php';
+
 
 $inicio = $_POST['inicio'];
 $fin = $_POST['fin'];
+$columnas = $_POST['columnas'];
+
 
 $inicioExploded = explode('-', $inicio);
 $finExploded = explode('-', $fin);
@@ -28,38 +31,91 @@ $mesFin = date('m', $fechaFin);
 
 $diff = (($anioFin - $anioInicio) * 12) + ($mesFin - $mesInicio);
 
-$tabla = '<table>';
-$tabla .= '<tr><th>Calendario</th></tr>';
+$meses = array();
+$objetosCalendario = array();
 
-for($i=0; $i<$diff; $i++){
+$mesCorriente = $mesInicio;
+$anioCorriente = $anioInicio;
 
-    $tabla .= '<tr><td><input type="date"></td></tr>';
+/*echo "anio inicio:" . $anioInicio . '<br>';
+echo "anio fin: " . $anioFin . '<br>';*/
 
+//echo $mesFin . '<br>';
+
+
+while($anioCorriente <= $anioFin){
+    
+    $mesFinal = $anioCorriente == $anioFin ? $mesFin : 12;
+    
+    for($i = $mesCorriente; $i <= $mesFinal; $i++){
+
+        if(!is_array($meses[$anioCorriente])){
+           
+            $meses[$anioCorriente] = array();
+            array_push($meses[$anioCorriente], $i);
+            //$meses[$anioCorriente] = $anioCorriente . '-' . $i;
+        }
+        
+        else{
+            //$meses[$anioCorriente] = $anioCorriente . '-' . $i;
+            array_push($meses[$anioCorriente], $i);
+
+        }
+        
+        
+    }
+     
+    $mesCorriente = 1;
+    $anioCorriente++;
+        
+    
+    
 }
 
-echo $tabla;
+foreach ($meses as $anio => $meses) {
 
+    foreach ($meses as $mes) {
 
-/*echo $mesInicio;
-echo '<br>';
-echo $mesFin;-/
-
-
-
-
-/*echo $fechaInicio . '<br>';
-echo $fechaFin;
-
-if($fechaInicio > $fechaFin){
-    echo 'la fecha inicio es mayor que la fecha inicial';
+        $mesC = new Mes($anio, $mes);
+        array_push($objetosCalendario, $mesC);
+    }
 }
 
-else{
-    echo 'las fechas son correctas, procedemos a generar el calendario';
-}
 
-*/
+    $tablaCalendario = '<table><tr>';
 
-/*echo $inicio;
-echo $fin;*/
+
+    for($i = 0; $i <= count($objetosCalendario); $i++){
+        
+               
+        if($i % $columnas == 0){
+            
+            $tablaCalendario .= '</tr><tr>';
+            
+        }
+        
+        if($i == $columnas){
+            
+            $tablaCalendario .= '</tr>';
+            
+        }
+        
+                $tablaCalendario.= '<td>' . $objetosCalendario[$i]->calendario . '</td>';
+
+
+    }
+    
+    $tablaCalendario .= '</table>';   
+
+    
+        
+          
+    
+    echo $tablaCalendario;
+
+    
+
+
+
+
 

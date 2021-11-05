@@ -11,7 +11,7 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-        <form method="POST" action="generarCalendario.php" onsubmit="validarFecha();">
+        <form method="POST" action="generarCalendario.php" onsubmit="return validarFecha();">
             
             <div>
             <label for="inicio">Inicio</label>
