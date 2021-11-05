@@ -11,6 +11,10 @@
  *
  * @author jedua
  */
+
+session_start();
+
+
 class Mes {
     
     public $anio;
@@ -63,8 +67,8 @@ class Mes {
 
     public function generarCalendario(){
         
-        $this->calendario = '<table border=1>'.
-                '<tr><th colspan=7>'.$this->mesLetra. ' ' . $this->anio .'</th></tr>'.
+        $this->calendario = '<table class="calendar">'.
+                '<tr><th colspan=7 class="calendar_header">'.$this->mesLetra. ' ' . $this->anio .'</th></tr>'.
                 '<tr><th>d</th><th>l</th><th>m</th><th>m</th><th>j</th><th>v</th><th>s</th></tr>';
         
 

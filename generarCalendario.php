@@ -1,4 +1,22 @@
+
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Calendario</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="estilo.css"/>
+    </head>
+    <body class="body">
+        
 <?php
+
+date_default_timezone_set('America/Mexico_City');
 
 /* 
  * To change this license header, choose License Headers in Project Properties.
@@ -6,7 +24,26 @@
  * and open the template in the editor.
  */
 
+session_start();
+
 require_once 'Mes.php';
+
+$log = array();
+
+
+$fechaVisita = new DateTime();
+
+$log['fecha'] = $fechaVisita->format('y-m-d') . '-*-';
+$log['hora'] = $fechaVisita->format('H:i:s') . '-*-';
+$log['ip'] = $_SERVER['REMOTE_ADDR'] . "\r\n";
+
+//print_r($_SESSION);
+
+$log['fechaInicio'];
+$log['fechaFin'];
+
+file_put_contents('access_log', $log, FILE_APPEND | LOCK_EX);
+
 
 
 $inicio = $_POST['inicio'];
@@ -29,18 +66,11 @@ $anioFin = date('Y', $fechaFin);
 $mesInicio = date('m', $fechaInicio);
 $mesFin = date('m', $fechaFin);
 
-$diff = (($anioFin - $anioInicio) * 12) + ($mesFin - $mesInicio);
-
 $meses = array();
 $objetosCalendario = array();
 
 $mesCorriente = $mesInicio;
 $anioCorriente = $anioInicio;
-
-/*echo "anio inicio:" . $anioInicio . '<br>';
-echo "anio fin: " . $anioFin . '<br>';*/
-
-//echo $mesFin . '<br>';
 
 
 while($anioCorriente <= $anioFin){
@@ -82,10 +112,10 @@ foreach ($meses as $anio => $meses) {
 }
 
 
-    $tablaCalendario = '<table><tr>';
+    $tablaCalendario = '<div><table class="table_calendar"><tr>';
 
 
-    for($i = 0; $i <= count($objetosCalendario); $i++){
+    for($i = 0; $i < count($objetosCalendario); $i++){
         
                
         if($i % $columnas == 0){
@@ -100,14 +130,15 @@ foreach ($meses as $anio => $meses) {
             
         }
         
-                $tablaCalendario.= '<td>' . $objetosCalendario[$i]->calendario . '</td>';
+        $tablaCalendario.= '<td>' . $objetosCalendario[$i]->calendario . '</td>';
 
 
     }
     
-    $tablaCalendario .= '</table>';   
+    $tablaCalendario .= '</table></div>';   
 
     
+    echo '</body></html>';
         
           
     

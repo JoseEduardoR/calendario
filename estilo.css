@@ -1,0 +1,82 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 5 nov. 2021, 0:21:51
+    Author     : jedua
+*/
+
+.body{
+    
+    background-color: #EEEBDD;
+    text-align: center; 
+    
+}
+
+.header{
+    
+    color: #630000;
+    
+}
+
+.input{
+    
+    margin: 1rem;
+    background-color: #D8B6A4;
+    
+    
+}
+
+.boton{
+    
+    background-color: #630000; 
+    color: white;
+    font-size: 1rem;
+    border-radius: 10px;
+    padding: 0.5rem;
+    margin-top: 0.5rem;
+    
+}
+
+.boton:hover{
+    
+    cursor: pointer;
+    
+}
+
+.calendar{
+    
+    background-color: #D8B6A4;
+    height: 100px;
+    padding-bottom: 1rem;
+    margin: 0.2rem 0;
+
+}
+
+.label{
+    
+    color: #000000;
+    font-weight: bolder;
+    
+}
+
+.calendar_header{
+    
+
+    background-color: #630000;
+    color: white;
+    vertical-align: baseline;
+    
+}
+
+.table_calendar{
+    
+    text-align: center;
+    margin:auto;
+    
+}
+
+
+

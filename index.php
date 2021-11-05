@@ -4,26 +4,38 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
+
+<?php
+date_default_timezone_set('America/Mexico_City');
+session_start();
+
+?>
+
 <html>
     <head>
         <title>TODO supply a title</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="estilo.css" type="text/css">
     </head>
-    <body>
+    <body class="body">
+        
+        <h1 class="header">Calendario</h1>
+        
         <form method="POST" action="generarCalendario.php" onsubmit="return validarFecha();">
             
             <div>
-            <label for="inicio">Inicio</label>
-            <input required type="text" pattern="(0?[1-9]|1[0-2])-(\d{4})" name="inicio" placeholder="MM-YYYY" id="inicio">
+                <label class="label" for="inicio">Inicio</label>
+            <input class="input" required type="text" pattern="(0?[1-9]|1[0-2])-(\d{4})" name="inicio" placeholder="MM-YYYY" id="inicio">
             </div>
             
             <div>
-            <label for="fin">Fin</label>
-            <input required type="text" pattern="(0?[1-9]|1[0-2])-(\d{4})" name="fin" placeholder="MM-YYYY" onblur="validarFecha();" id="fin">
+                <label class="label" for="fin">Fin</label>
+            <input class="input" required type="text" pattern="(0?[1-9]|1[0-2])-(\d{4})" name="fin" placeholder="MM-YYYY" onblur="validarFecha();" id="fin">
             </div>
             <div>
-            <select name="columnas">
+                <label class="label" for="columnas">Columnas</label>    
+            <select name="columnas" class="input">
                 <option>1</option>
                 <option>2</option>
                 <option>3</option>
@@ -37,7 +49,7 @@ and open the template in the editor.
             </select>
             </div>
             
-            <input type="submit" value="generar calendario"/>
+            <input class="boton" type="submit" value="generar calendario"/>
             
         </form>
     </body>
@@ -60,24 +72,16 @@ and open the template in the editor.
              
              alert("la fecha fin no puede ser menor que la fecha inicio");
 
-             return false;
-
              inicio.value = '';
              fin.value = '';
              
+                return false;
+  
          }
          
          else{
              console.log("procedemos a generar el calendario indicado");
-         }
-         
-         /*console.log("fecha inicio: ");
-         console.log(dateInicio);
-         
-         console.log("fecha fin: ");
-         console.log(dateFin);*/
-         
-         
+         }     
          
      }
      
